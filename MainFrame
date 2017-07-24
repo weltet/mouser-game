@@ -1,0 +1,93 @@
+import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+
+public class MainFrame extends JFrame{
+	
+	private MainFrame self = this;
+	
+	private JLabel topSpacing = new JLabel();
+	private JButton startButton = new JButton(" Start  Game ");
+	private JButton historyButton = new JButton("Game History");
+	private JButton exitButton = new JButton(" Exit  Game ");
+	private JLabel bottomSpacing = new JLabel();
+	
+	private JPanel startPanel = new JPanel();
+	private JPanel historyPanel = new JPanel();
+	private JPanel exitPanel = new JPanel();
+	
+	private void compInit(){
+		this.startButton.setSize(250,30);
+		this.historyButton.setSize(250,30);
+		this.exitButton.setSize(250,30);
+		
+		this.startPanel.add(startButton);
+		this.historyPanel.add(historyButton);
+		this.exitPanel.add(exitButton);
+		
+		this.add(topSpacing);
+		this.add(startPanel);
+		this.add(historyPanel);
+		this.add(exitPanel);
+		this.add(bottomSpacing);
+	}
+	
+	private void eventInit(){
+		
+		this.startButton.addActionListener(new ActionListener(){
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				new GameDialog(self).setVisible(true);
+				
+			}
+			
+		});
+		
+		this.historyButton.addActionListener(new ActionListener(){
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+		});
+		
+		this.exitButton.addActionListener(new ActionListener(){
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				
+				int answer = JOptionPane.showConfirmDialog(null,"exit?", "exit confirm", JOptionPane.OK_CANCEL_OPTION);
+				if(answer==0){
+					System.exit(0);
+				}
+				
+				
+			}
+			
+		});
+	}
+	private MainFrame(){
+		this.setTitle("Mouse Game");
+		this.setLayout(new GridLayout(5,1));
+		this.setSize(300,500);
+		this.setLocationRelativeTo(null);
+		this.setDefaultCloseOperation(MainFrame.EXIT_ON_CLOSE);
+		this.compInit();
+		this.eventInit();
+		this.setVisible(true);
+		
+	}
+	
+	public static void main(String[] args){
+		new MainFrame();
+	}
+}
