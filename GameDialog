@@ -1,0 +1,43 @@
+import java.awt.BorderLayout;
+import java.awt.FlowLayout;
+
+import javax.swing.JButton;
+import javax.swing.JDialog;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+
+public class GameDialog extends JDialog {
+	
+	private JLabel scoreLabel = new JLabel("score : ");
+	private JLabel timeLabel = new JLabel("time : ");
+	private JButton mouseButton = new JButton();
+	
+	private JPanel topPane = new JPanel(new FlowLayout(FlowLayout.RIGHT));
+	private JPanel PlayPane = new JPanel();
+	
+	private void compInit(){
+		this.topPane.add(scoreLabel);
+		this.topPane.add(timeLabel);
+		
+		this.PlayPane.add(mouseButton);
+		this.mouseButton.setSize(60,60);
+		this.mouseButton.setLocation(90, 90);
+		
+		this.add(topPane, BorderLayout.NORTH);
+		//this.add(PlayPane, BorderLayout.SOUTH);
+		this.add(mouseButton);
+	}
+	
+	private void eventInit(){
+		
+	}
+	public GameDialog(MainFrame parent){
+		this.setSize(600,600);
+		this.setLocationRelativeTo(parent);
+		this.setDefaultCloseOperation(GameDialog.DISPOSE_ON_CLOSE);
+		this.compInit();
+		this.eventInit();
+		this.setVisible(true);
+	}
+
+}
